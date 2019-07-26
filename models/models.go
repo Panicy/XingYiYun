@@ -34,6 +34,7 @@ type Banner struct {
 	BannerImg string `orm:"description(轮播图url)"`
 	Status int64 `orm:"description(轮播图状态)"`
 	Operation string `orm:"description(轮播图连接)"`
+	State int64 `orm:"description(状态1位启动，0为未启用);default(1)"`
 	Created time.Time
 }
 type Introduce struct {
@@ -75,5 +76,13 @@ func LoginDB(phone int,pwd string) (*User,error){
 		return nil,err
 	}
 	return  us,nil
+}
+
+func UserDB()( []*User,error){
+	o:=orm.NewOrm()
+	users:=make([]*User,0)
+	qs:=o.QueryTable("user")
+	_,err:=qs.All(&users)
+	return  users,err
 }
 

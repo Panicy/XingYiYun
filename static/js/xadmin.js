@@ -1,33 +1,33 @@
 $(function () {
     //加载弹出层
     layui.use(['form','element'],
-    function() {
-        layer = layui.layer;
-        element = layui.element;
-    });
+        function() {
+            layer = layui.layer;
+            element = layui.element;
+        });
 
     //触发事件
-  var tab = {
+    var tab = {
         tabAdd: function(title,url,id){
-          //新增一个Tab项
-          element.tabAdd('xbs_tab', {
-            title: title 
-            ,content: '<iframe tab-id="'+id+'" frameborder="0" src="'+url+'" scrolling="yes" class="x-iframe"></iframe>'
-            ,id: id
-          })
+            //新增一个Tab项
+            element.tabAdd('xbs_tab', {
+                title: title
+                ,content: '<iframe tab-id="'+id+'" frameborder="0" src="'+url+'" scrolling="yes" class="x-iframe"></iframe>'
+                ,id: id
+            })
         }
         ,tabDelete: function(othis){
-          //删除指定Tab项
-          element.tabDelete('xbs_tab', '44'); //删除：“商品管理”
-          
-          
-          othis.addClass('layui-btn-disabled');
+            //删除指定Tab项
+            element.tabDelete('xbs_tab', '44'); //删除：“商品管理”
+
+
+            othis.addClass('layui-btn-disabled');
         }
         ,tabChange: function(id){
-          //切换到指定Tab项
-          element.tabChange('xbs_tab', id); //切换到：用户管理
+            //切换到指定Tab项
+            element.tabChange('xbs_tab', id); //切换到：用户管理
         }
-      };
+    };
 
 
     tableCheck = {
@@ -44,7 +44,7 @@ $(function () {
                         $(".layui-form-checkbox").addClass('layui-form-checked');
                     }
                 }
-                
+
             });
         },
         getData:function  () {
@@ -59,7 +59,7 @@ $(function () {
 
     //开启表格多选
     tableCheck.init();
-      
+
 
     $('.container .left_open i').click(function(event) {
         if($('.left-nav').css('left')=='0px'){
@@ -74,7 +74,7 @@ $(function () {
             }
         }
 
-    })	</head>;
+    });
 
     $('.page-content-bg').click(function(event) {
         $('.left-nav').animate({left: '-221px'}, 100);
@@ -86,15 +86,15 @@ $(function () {
         $('.layui-tab-title li').eq(0).find('i').remove();
     });
 
-   $("tbody.x-cate tr[fid!='0']").hide();
+    $("tbody.x-cate tr[fid!='0']").hide();
     // 栏目多级显示效果
     $('.x-show').click(function () {
         if($(this).attr('status')=='true'){
-            $(this).html('&#xe625;'); 
+            $(this).html('&#xe625;');
             $(this).attr('status','false');
             cateId = $(this).parents('tr').attr('cate-id');
             $("tbody tr[fid="+cateId+"]").show();
-       }else{
+        }else{
             cateIds = [];
             $(this).html('&#xe623;');
             $(this).attr('status','true');
@@ -103,18 +103,18 @@ $(function () {
             for (var i in cateIds) {
                 $("tbody tr[cate-id="+cateIds[i]+"]").hide().find('.x-show').html('&#xe623;').attr('status','true');
             }
-       }
+        }
     })
 
     //左侧菜单效果
     // $('#content').bind("click",function(event){
-	//点击菜单显示效果	
-	$(document).ready(function() {
-       $('.left-nav #nav li .sub-menu li ').click(function(){
-		   $(this).addClass('menu-current').siblings().removeClass('menu-current');
-		   })
-    });	
-	
+    //点击菜单显示效果
+    $(document).ready(function() {
+        $('.left-nav #nav li .sub-menu li ').click(function(){
+            $(this).addClass('menu-current').siblings().removeClass('menu-current');
+        })
+    });
+
     $('.left-nav #nav li').click(function (event) {
 
         if($(this).children('.sub-menu').length){
@@ -123,7 +123,7 @@ $(function () {
                 $(this).find('.nav_right').html('&#xe6a7;');
                 $(this).children('.sub-menu').stop().slideUp();
                 $(this).siblings().children('.sub-menu').slideUp();
-				
+
             }else{
                 $(this).addClass('open');
                 $(this).children('a').find('.nav_right').html('&#xe6a6;');
@@ -145,19 +145,19 @@ $(function () {
                     return;
                 }
             };
-            
+
             tab.tabAdd(title,url,index+1);
             tab.tabChange(index+1);
         }
-        
+
         event.stopPropagation();
-         
+
     })
-    
+
 })
 var cateIds = [];
 function getCateId(cateId) {
-    
+
     $("tbody tr[fid="+cateId+"]").each(function(index, el) {
         id = $(el).attr('cate-id');
         cateIds.push(id);

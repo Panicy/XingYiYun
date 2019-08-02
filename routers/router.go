@@ -13,4 +13,5 @@ func init() {
     beego.Router("/addBanner", &controllers.AddBanner{})
     beego.Router("/user",&controllers.UserController{})
     beego.Router("/about",&controllers.AboutController{})
+    beego.Router("/upImage",&controllers.UpImageController{})
 }

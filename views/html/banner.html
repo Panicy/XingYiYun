@@ -13,9 +13,24 @@
   <script src="/static/js/xadmin.js" type="text/javascript" charset="utf-8"></script>
   <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
+<style>
+  .layui-carousel{
+    margin: 0 25%;
+  }
+</style>
 <body class="form-wrap">
 <blockquote class="layui-elem-quote layui-quote-nm">
   <button type="button" class="layui-btn layui-btn-primary" onclick="x_admin_show('添加轮播图','/addBanner')"> 添加轮播图</button>
+
+  <div class="layui-carousel" id="test1">
+    <div carousel-item>
+      <div><img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1564648733&di=692e6b5b5563139a105b4d9d16f40791&src=http://img.mp.itc.cn/upload/20170816/ede70cf3a497447fa423391b154fe7b0_th.jpg" alt=""></div>
+      <div><img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1564648733&di=692e6b5b5563139a105b4d9d16f40791&src=http://img.mp.itc.cn/upload/20170816/ede70cf3a497447fa423391b154fe7b0_th.jpg" alt=""></div>
+      <div><img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1564648733&di=692e6b5b5563139a105b4d9d16f40791&src=http://img.mp.itc.cn/upload/20170816/ede70cf3a497447fa423391b154fe7b0_th.jpg" alt=""></div>
+      <div><img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1564648733&di=692e6b5b5563139a105b4d9d16f40791&src=http://img.mp.itc.cn/upload/20170816/ede70cf3a497447fa423391b154fe7b0_th.jpg" alt=""></div>
+      <div><img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1564648733&di=692e6b5b5563139a105b4d9d16f40791&src=http://img.mp.itc.cn/upload/20170816/ede70cf3a497447fa423391b154fe7b0_th.jpg" alt=""></div>
+    </div>
+  </div>
   <div class="layui-form">
     <table class="layui-table">
       <colgroup>
@@ -49,6 +64,20 @@
 </blockquote>
 
 
+
 </div>
+<script>
+  layui.use('carousel', function(){
+    var carousel = layui.carousel;
+    //建造实例
+    carousel.render({
+      elem: '#test1'
+      ,width: '50%' //设置容器宽度
+      ,arrow: 'always' //始终显示箭头
+      //,anim: 'updown' //切换动画方式
+    });
+  });
+</script>
+
 </body>
 </html>

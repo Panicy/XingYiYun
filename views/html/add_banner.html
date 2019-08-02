@@ -8,124 +8,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/static/css/xadmin.css">
     <link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css">
+    <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/xadmin.js" type="text/javascript" charset="utf-8"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
 <body class="form-wrap">
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+<fieldset class="layui-elem-field layui-field-title " style="margin-top: 50px;">
     <legend>添加轮播图</legend>
 </fieldset>
-<form class="layui-form layui-form-pane" action="">
 
+<form class="layui-form" action="/addBanner">
     <div class="layui-form-item">
-        <label class="layui-form-label">轮播图说明</label>
-        <div class="layui-input-inline">
-            <input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-
-    <div class="layui-form-item">
-        <div class="layui-inline">
-            <label class="layui-form-label">日期选择</label>
-            <div class="layui-input-block">
-                <input type="text" name="date" id="date1" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-inline">
-            <label class="layui-form-label">行内表单</label>
-            <div class="layui-input-inline">
-                <input type="text" name="number" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">密码</label>
-        <div class="layui-input-inline">
-            <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
-        </div>
-        <div class="layui-form-mid layui-word-aux">请务必填写用户名</div>
-    </div>
-
-    <div class="layui-form-item">
-        <div class="layui-inline">
-            <label class="layui-form-label">范围</label>
-            <div class="layui-input-inline" style="width: 100px;">
-                <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-form-mid">-</div>
-            <div class="layui-input-inline" style="width: 100px;">
-                <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">单行选择框</label>
         <div class="layui-input-block">
-            <select name="interest" lay-filter="aihao">
-                <option value=""></option>
-                <option value="0">写作</option>
-                <option value="1" selected="">阅读</option>
-                <option value="2">游戏</option>
-                <option value="3">音乐</option>
-                <option value="4">旅行</option>
-            </select>
+            <button type="button" class="layui-btn" lay-verify="img" id="upBtn">
+                <i class="layui-icon">&#xe67c;</i>上传图片
+            </button>
         </div>
     </div>
-
     <div class="layui-form-item">
-        <label class="layui-form-label">行内选择框</label>
-        <div class="layui-input-inline">
-            <select name="quiz1">
-                <option value="">请选择省</option>
-                <option value="浙江" selected="">浙江省</option>
-                <option value="你的工号">江西省</option>
-                <option value="你最喜欢的老师">福建省</option>
-            </select>
-        </div>
-        <div class="layui-input-inline">
-            <select name="quiz2">
-                <option value="">请选择市</option>
-                <option value="杭州">杭州</option>
-                <option value="宁波" disabled="">宁波</option>
-                <option value="温州">温州</option>
-                <option value="温州">台州</option>
-                <option value="温州">绍兴</option>
-            </select>
-        </div>
-        <div class="layui-input-inline">
-            <select name="quiz3">
-                <option value="">请选择县/区</option>
-                <option value="西湖区">西湖区</option>
-                <option value="余杭区">余杭区</option>
-                <option value="拱墅区">临安市</option>
-            </select>
-        </div>
-    </div>
-    <div class="layui-form-item" pane="">
-        <label class="layui-form-label">开关-开</label>
         <div class="layui-input-block">
-            <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" title="开关">
+            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                预览图：
+                <div class="layui-upload-list" id="demo2">
+                    <img  id="bannerImg" src="" alt="">
+                </div>
+            </blockquote>
         </div>
     </div>
-    <div class="layui-form-item" pane="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否启用</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="switch" lay-skin="switch" checked>
+        </div>
+    </div>
+    <div class="layui-form-item">
         <label class="layui-form-label">单选框</label>
         <div class="layui-input-block">
-            <input type="radio" name="sex" value="男" title="男" checked="">
-            <input type="radio" name="sex" value="女" title="女">
-            <input type="radio" name="sex" value="禁" title="禁用" disabled="">
+            <input type="radio" name="state" value="1" title="跳转小程序">
+            <input type="radio" name="state" value="2" title="跳转页面" checked>
+            <input type="radio" name="state" value="3" title="跳转网页" >
+            <input type="radio" name="state" value="4" title="不跳转" >
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">文本域</label>
+        <label class="layui-form-label">跳转路径</label>
         <div class="layui-input-block">
-            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+            <textarea lay-verify="desc" name="desc" placeholder="请输入内容:1.跳转小程序,2.跳转页面,3.跳转网页.,4.不跳转" class="layui-textarea"></textarea>
         </div>
     </div>
     <div class="layui-form-item">
-        <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
-        <button class="layui-btn" lay-submit="" lay-filter="demo2">跳转式提交</button>
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo" id="commit">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
     </div>
 </form>
 </div>
+
+<script>
+
+    //Demo
+    layui.use(['form','upload'], function(){
+        var form = layui.form;
+        var upload = layui.upload;
+        var uploadInst = upload.render({
+            elem: '#upBtn' //绑定元素
+            ,accept:"images"
+            ,auto:false
+            ,url: '/addBanner' //上传接口
+            ,bindAction:'#commit'
+            ,choose:function (e) {
+                console.log(e)
+                e.preview(function (index,file,result) {
+                    $("#bannerImg"). attr('src', result);
+                })
+            }
+            ,before:function(){
+                console.log(this.data)
+                this.data={
+                    status:$('input[name="switch"]').val(),
+                    desc:$('textarea[name="desc"]').val(),
+                    state:$("input[name='state']:checked").val(),
+                }
+            }
+            ,done: function(res){
+                console.log(res)
+                if(res.code==0){
+                    layer.msg(res.data.msg)
+                    $("#bannerImg"). attr('src', res.data.src);
+
+                }
+            //     //上传完毕回调
+            }
+            ,error: function(){
+                //请求异常回调
+            }
+        });
+
+        // form.verify({
+        //     desc:function (val,item) {
+        //         if(val==''){
+        //             layer.msg("请填写跳转地址")
+        //             return "请填写跳转地址"
+        //         }
+        //     }
+        // })
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            console.log(JSON.stringify(data.field))
+            if(data.field.file==null||data.field.file==""){
+                layer.msg("请上传图片")
+                return false
+            }
+            if(data.field.state!=4&& data.field.desc==null||data.field.desc==""){
+                layer.msg("请填写跳转地址")
+                return false
+            }
+            // layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+
+
+</script>
 </body>
 </html>

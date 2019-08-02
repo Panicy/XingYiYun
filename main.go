@@ -19,4 +19,6 @@ func main() {
 
 func init(){
 	models.RegisterDB()
+	beego.BConfig.WebConfig.Session.SessionCookieLifeTime=6000
+
 }

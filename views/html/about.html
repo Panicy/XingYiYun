@@ -15,23 +15,58 @@
 </head>
 <body class="form-wrap">
 <blockquote class="layui-elem-quote layui-quote-nm"style="margin-top: 50px;">
-    <textarea id="demo" style="display: none;"></textarea>
+    <textarea id="demo" style="display: none;">
+        {{.about.Content}}
+    </textarea>
     <fieldset class="layui-elem-field site-demo-button" style="margin-top: 30px;">
         <legend></legend>
         <div>
-            <button type="button" class="layui-btn layui-btn-normal">添加信息</button>
+            <button id="btn" iid="{{.about.Id}}" type="button" class="layui-btn layui-btn-normal">保存信息</button>
         </div>
     </fieldset>
     <fieldset class="layui-elem-field site-demo-button">
 </blockquote>
-
-
 </div>
 <script>
+
+    let Btn=document.getElementById("btn")
     layui.use('layedit', function(){
         var layedit = layui.layedit;
-        layedit.build('demo'); //建立编辑器
+        layedit.set({
+            uploadImage:{
+                url:"/upImage",
+                type:"post",
+            }
+        })
+
+        var index=layedit.build('demo',{
+            height:400
+        }); //建立编辑器
+        indexs=index
+       layedit.getText(index)
+        Btn.addEventListener("click",()=>{
+           alert( $("#btn").attr("iid"))
+            if(layedit.getContent(index)==null||layedit.getContent(index)==""){
+                layer.alert("请填写一点东西吧~")
+                return
+            }
+            // alert(layedit.getContent(index))
+             $.post("/about",{
+                 id:$("#btn").attr("iid")?$("#btn").attr("iid"):"",
+                 texts:layedit.getContent(index)
+             },function (data) {
+                 if(data.code==0){
+                     alert(data.msg)
+                     window.location.href="/about"
+                 }else {
+                     alert(data.msg)
+                 }
+               console.log(data.code==0)
+                 console.log(data)
+             })
+        })
     });
+
 </script>
 </body>
 </html>

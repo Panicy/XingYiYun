@@ -85,4 +85,37 @@ func UserDB()( []*User,error){
 	_,err:=qs.All(&users)
 	return  users,err
 }
-
+func AboutDb(c string,id int64) (int64,error){
+	o:=orm.NewOrm()
+	qs:=o.QueryTable("about")
+	abouts:=&About{Content:c}
+	err:=qs.Filter("id",id).One(abouts)
+	var i int64
+	if err!=nil{
+		fmt.Println("id不存在")
+		i,err=o.Insert(abouts)
+		if err!=nil{
+			return 0,err
+		}
+		return  i,nil
+	}
+	fmt.Println("id存在")
+	i,err=qs.Update(orm.Params{
+		"Content":c,
+	})
+	if err!=nil{
+		return 0,err
+	}
+	return  i,nil
+}
+func GetAboutDb() *About{
+	o:=orm.NewOrm()
+	qs:=o.QueryTable("about")
+	//about:=&About{}
+	var a About
+	err:=qs.One(&a,"Id","Content")
+	if err!=nil{
+		return nil
+	}
+	return &a
+}
